@@ -8,28 +8,28 @@ import { UpdateResult, DeleteResult } from 'typeorm';
 export class TodoController {
     constructor(private TodoService: TodoService) {}
 
-    @Get()
+    @Get('/')
     async getAll(): Promise<Todo[]> {
         return await this.TodoService.getAll();
     }
 
-    @Post()
+    @Post('/')
     async create(@Body() todo: Todo): Promise<Todo> {
         return await this.TodoService.create(todo);
     }
 
     
-    @Get(':id')
+    @Get('/:id')
     async getOne(@Param() id: number): Promise<Todo> {
         return await this.TodoService.getOne(id);
     }
 
-    @Delete(':id')
+    @Delete('/:id')
     async delete(@Param() id: number): Promise<DeleteResult> {
         return await this.TodoService.delete(id);
     }
 
-    @Put(':id')
+    @Put('/:id')
     async update(
         @Param() id: number,
         @Body() todo: Todo
